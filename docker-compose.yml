@@ -1,1 +1,28 @@
 version: '3.1'
+
+# create a mysql database
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: econetShop
+      MYSQL_USER: econetShop
+      MYSQL_PASSWORD: ec0netShop
+    restart: always
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+    # add admirer
+
+  admirer:
+    image: adminer
+    restart: always
+    ports:
+      - '9000:8080'
+

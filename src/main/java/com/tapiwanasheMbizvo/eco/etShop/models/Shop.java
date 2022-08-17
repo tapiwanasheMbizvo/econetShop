@@ -16,7 +16,6 @@ public class Shop {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "area_id")
-    @JsonBackReference
     private Area area;
 
     public Shop() {

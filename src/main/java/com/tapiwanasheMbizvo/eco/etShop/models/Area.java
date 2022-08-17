@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "shop_area")
@@ -19,11 +20,21 @@ public class Area {
     private Long id;
     private String areaName;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToMany
     @JoinColumn(name = "shop_id")
     @JsonBackReference
-    private List<Shop> shops;
+    private Set<Shop> shops;
 
+
+    public  Area (String areaName){
+
+        this.areaName =areaName;
+    }
+
+    public  Area (Long id){
+
+        this.id = id;
+    }
     public Long getId() {
         return id;
     }
@@ -40,11 +51,10 @@ public class Area {
         this.areaName = areaName;
     }
 
-    public List<Shop> getShops() {
+    public Set<Shop> getShops() {
         return shops;
     }
-
-    public void setShops(List<Shop> shops) {
+    public void setShops(Set<Shop> shops) {
         this.shops = shops;
     }
 }
