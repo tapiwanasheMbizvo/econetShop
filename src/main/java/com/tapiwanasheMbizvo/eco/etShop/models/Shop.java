@@ -1,11 +1,13 @@
 package com.tapiwanasheMbizvo.eco.etShop.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "shop")
+@ToString
 public class Shop {
 
 
@@ -16,6 +18,7 @@ public class Shop {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "area_id")
+    @JsonBackReference
     private Area area;
 
     public Shop() {

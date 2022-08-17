@@ -4,6 +4,7 @@ package com.tapiwanasheMbizvo.eco.etShop.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Table(name = "shop_area")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Area {
 
     @Id
@@ -22,7 +24,7 @@ public class Area {
 
     @OneToMany
     @JoinColumn(name = "shop_id")
-    @JsonBackReference
+
     private Set<Shop> shops;
 
 

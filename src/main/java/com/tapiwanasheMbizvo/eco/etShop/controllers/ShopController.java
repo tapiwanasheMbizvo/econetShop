@@ -8,12 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/econetShop/api/v1/shops")
 public class ShopController {
 
 
+    Logger logger = Logger.getLogger(ShopController.class.getName());
     private final ShopService shopService;
     private  final AreaService areaService;
 
@@ -30,8 +32,13 @@ public class ShopController {
         //if the area does not exist the endpoint will return a bad request
 
         shop.setShopName(shop.getShopName().toUpperCase());
-        if (areaService.findByAreaName(shop.getArea().getAreaName()).isPresent()) {
-            return ResponseEntity.badRequest().body("Area does with name "+areaService.findByAreaName(shop.getArea().getAreaName())+" not exist");
+
+        String areaName = shop.getArea().getAreaName();
+
+        logger.info(" Creating shop in "+ areaName);
+
+        if (!areaService.findByAreaName(areaName).isPresent()) {
+            return ResponseEntity.badRequest().body("Area does with name "+shop.getArea().getAreaName()+" not exist");
         }
         if(shopService.getShopByName(shop.getShopName()).isPresent()){
 
@@ -41,7 +48,7 @@ public class ShopController {
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/area/{id}")
     public ResponseEntity getAllShopsInAreaWithGivenId( @PathVariable(name = "id") Long areaID){
 
 
