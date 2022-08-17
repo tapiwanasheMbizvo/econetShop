@@ -10,6 +10,8 @@ This API exposes end pints that perform CRUD operations on two entities , an Are
 4. run `mvn spring-boot:run` to run the application 
 5. Navigate to [link to documentation]( http://localhost:8080/swagger-ui.html)
 
+## Link to the video demo [click here](https://drive.google.com/file/d/1BE4_QSt9njbsYFAeZb8hqQeZ3q_DIP-y/view?usp=sharing)
+
 
 
 
